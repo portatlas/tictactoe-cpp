@@ -6,9 +6,9 @@
 
 class BoardFormatter {
     public:
-        string format(Board board);
+        static string format(Board board);
     private:
-        vector<string> indexEmptySlots(Board board);
+        static vector<string> indexEmptySlots(Board board);
 };
 
 #endif
