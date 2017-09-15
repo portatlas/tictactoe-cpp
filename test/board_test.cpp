@@ -1,5 +1,5 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "../lib/catch.hpp"
 #include "../src/marker.hpp"
 #include "../src/board.hpp"
 
@@ -39,12 +39,6 @@ SCENARIO ("Board") {
             }
         }
 
-        WHEN("#whoseTurn is called") {
-            THEN("X always starts first") {
-                REQUIRE(X == board.whoseTurn());
-            }
-        }
-
         WHEN("#isGridFull is called") {
             THEN("returns false") {
                 REQUIRE(false == board.isGridFull());
@@ -61,7 +55,7 @@ SCENARIO ("Board") {
 
     GIVEN("Marked Board with X on the first slot") {
         Board board(9);
-        board.fillSlot(1);
+        board.fillSlot(1, X);
         WHEN("#getGrid is called") {
             THEN("return a new board with X on the first slot") {
                 vector<string> marked_grid = {X, " ", " ", " ", " ", " ", " ", " ", " "};
@@ -88,12 +82,6 @@ SCENARIO ("Board") {
             }
         }
 
-        WHEN("#whoseTurn is called") {
-            THEN("return O since X just moved") {
-                REQUIRE(O == board.whoseTurn());
-            }
-        }
-
         WHEN("#validSlots is called") {
             THEN("return a vector with values from 1 to 8") {
                 vector<int> empty_slots = {2, 3, 4, 5, 6, 7, 8, 9};
@@ -102,7 +90,7 @@ SCENARIO ("Board") {
         }
 
         WHEN("#fillSlot is called with 2") {
-            board.fillSlot(2);
+            board.fillSlot(2, O);
             AND_WHEN("#getGrid is called") {
                 THEN("return a new grid with X and O on 1 and 2 respectively") {
                     vector<string> marked_grid = {X, O, " ", " ", " ", " ", " ", " ", " "};
@@ -113,7 +101,7 @@ SCENARIO ("Board") {
                     THEN("#getGrid return a new grid with X,O,X on 1,2,7 respectively") {
                         vector<string> marked_grid = {X, O, " ", " ", " ", " ", X, " ", " "};
                         Board expected_board(marked_grid);
-                        REQUIRE(expected_board.getGrid() == board.fillSlot(7).getGrid());
+                        REQUIRE(expected_board.getGrid() == board.fillSlot(7, X).getGrid());
                     }
                 }
             }
@@ -133,12 +121,6 @@ SCENARIO ("Board") {
         THEN("#countMarker return 3 for X and 2 for O") {
             REQUIRE(3 == active_board.countMarker(X));
             REQUIRE(2 == active_board.countMarker(O));
-        }
-
-        WHEN("#whoseTurn is called") {
-            THEN("return O since X just moved") {
-                REQUIRE(O == active_board.whoseTurn());
-            }
         }
 
         THEN("#validSlots returns the values from 4,5,6,9") {
