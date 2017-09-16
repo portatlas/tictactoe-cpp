@@ -9,9 +9,9 @@ SCENARIO ("BoardFormatter") {
         Board board(full_grid);
         WHEN("#format is called") {
             THEN("return the grid as a 3 x 3 matrix") {
-                REQUIRE("X O X\n"
-                        "O X O\n"
-                        "X O X\n" == boardFormatter.format(board));
+                REQUIRE(boardFormatter.format(board) == "X O X\n"
+                                                        "O X O\n"
+                                                        "X O X\n");
             }
         }
     }
@@ -21,9 +21,9 @@ SCENARIO ("BoardFormatter") {
         Board board(one_empty_slot_grid);
         WHEN("#format is called") {
             THEN("return the grid as a 3 x 3 matrix and replace empty slots with the index") {
-                REQUIRE("1 O X\n"
-                        "O X O\n"
-                        "X O X\n" == boardFormatter.format(board));
+                REQUIRE(boardFormatter.format(board) == "1 O X\n"
+                                                        "O X O\n"
+                                                        "X O X\n");
             }
         }
     }
@@ -33,9 +33,9 @@ SCENARIO ("BoardFormatter") {
         Board board(empty_grid);
         WHEN("#format is called") {
             THEN("return the grid as a 3 x 3 matrix and replace all empty slots with the index") {
-                REQUIRE("1 2 3\n"
-                        "4 5 6\n"
-                        "7 8 9\n" == boardFormatter.format(board));
+                REQUIRE(boardFormatter.format(board) == "1 2 3\n"
+                                                        "4 5 6\n"
+                                                        "7 8 9\n");
             }
         }
     }

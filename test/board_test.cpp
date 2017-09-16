@@ -11,12 +11,12 @@ SCENARIO ("Board") {
 
         WHEN("#getSize is called") {
             THEN("return the size of the board") {
-                REQUIRE(9 == board.getSize());
+                REQUIRE(board.getSize() == 9);
             }
         }
         WHEN("#getGrid is called") {
             THEN("return an empty grid") {
-                REQUIRE(empty_grid == board.getGrid());
+                REQUIRE(board.getGrid() == empty_grid);
             }
         }
 
@@ -28,27 +28,27 @@ SCENARIO ("Board") {
 
         WHEN("#isSlotEmpty is called for the first slot") {
             THEN("return true") {
-                REQUIRE(true == board.isSlotEmpty(1));
+                REQUIRE(board.isSlotEmpty(1) == true);
             }
         }
 
         WHEN("#countMarker is called") {
             THEN("return 0") {
-                REQUIRE(0 == board.countMarker(X));
-                REQUIRE(0 == board.countMarker(O));
+                REQUIRE(board.countMarker(X) == 0);
+                REQUIRE(board.countMarker(O) == 0);
             }
         }
 
         WHEN("#isGridFull is called") {
             THEN("returns false") {
-                REQUIRE(false == board.isGridFull());
+                REQUIRE(board.isGridFull() == false);
             }
         }
 
         WHEN("#validSlots is called") {
             THEN("returns the values from 1 to 9") {
                 vector<int> valid_slots = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-                REQUIRE(valid_slots == board.validSlots());
+                REQUIRE(board.validSlots() == valid_slots);
             }
         }
     }
@@ -60,32 +60,32 @@ SCENARIO ("Board") {
             THEN("return a new board with X on the first slot") {
                 vector<string> marked_grid = {X, " ", " ", " ", " ", " ", " ", " ", " "};
                 Board expected_board(marked_grid);
-                REQUIRE(expected_board.getGrid() == board.getGrid());
+                REQUIRE(board.getGrid() == expected_board.getGrid());
             }
         }
 
         WHEN("#getSlot is called with the first slot") {
             THEN("return X since it was placed on the first slot") {
-                REQUIRE(X == board.getSlot(1));
+                REQUIRE(board.getSlot(1) == X);
             }
         }
 
         WHEN("#isSlotEmpty is called for the first slot") {
             THEN("return false") {
-                REQUIRE(false == board.isSlotEmpty(1));
+                REQUIRE(board.isSlotEmpty(1) == false);
             }
         }
 
         WHEN("#countMarker is called") {
             THEN("return 1") {
-                REQUIRE(1 == board.countMarker(X));
+                REQUIRE(board.countMarker(X) == 1);
             }
         }
 
         WHEN("#validSlots is called") {
             THEN("return a vector with values from 1 to 8") {
                 vector<int> empty_slots = {2, 3, 4, 5, 6, 7, 8, 9};
-                REQUIRE(empty_slots == board.validSlots());
+                REQUIRE(board.validSlots() == empty_slots);
             }
         }
 
@@ -95,13 +95,13 @@ SCENARIO ("Board") {
                 THEN("return a new grid with X and O on 1 and 2 respectively") {
                     vector<string> marked_grid = {X, O, " ", " ", " ", " ", " ", " ", " "};
                     Board expected_board(marked_grid);
-                    REQUIRE(expected_board.getGrid() == board.getGrid());
+                    REQUIRE(board.getGrid() == expected_board.getGrid());
                 }
                 AND_WHEN("#fillSlot is called with 7") {
                     THEN("#getGrid return a new grid with X,O,X on 1,2,7 respectively") {
                         vector<string> marked_grid = {X, O, " ", " ", " ", " ", X, " ", " "};
                         Board expected_board(marked_grid);
-                        REQUIRE(expected_board.getGrid() == board.fillSlot(7, X).getGrid());
+                        REQUIRE(board.fillSlot(7, X).getGrid() == expected_board.getGrid());
                     }
                 }
             }
@@ -114,18 +114,18 @@ SCENARIO ("Board") {
 
         WHEN("#getGrid is called") {
             THEN("return the grid it was initialized with") {
-                REQUIRE(marked_grid == active_board.getGrid());
+                REQUIRE(active_board.getGrid() == marked_grid);
             }
         }
 
         THEN("#countMarker return 3 for X and 2 for O") {
-            REQUIRE(3 == active_board.countMarker(X));
-            REQUIRE(2 == active_board.countMarker(O));
+            REQUIRE(active_board.countMarker(X) == 3);
+            REQUIRE(active_board.countMarker(O) == 2);
         }
 
         THEN("#validSlots returns the values from 4,5,6,9") {
             vector<int> valid_slots = {4, 5, 6, 9};
-            REQUIRE(valid_slots == active_board.validSlots());
+            REQUIRE(active_board.validSlots() == valid_slots);
         }
     }
 
@@ -135,27 +135,27 @@ SCENARIO ("Board") {
 
         WHEN("#getGrid is called") {
             THEN("return the board that it was set too") {
-                REQUIRE(current_board == full_board.getGrid());
+                REQUIRE(full_board.getGrid() == current_board);
             }
         }
 
         WHEN("#countMarker is called") {
             THEN("return 5 for X and 4 for O") {
-                REQUIRE(5 == full_board.countMarker(X));
-                REQUIRE(4 == full_board.countMarker(O));
+                REQUIRE(full_board.countMarker(X) == 5);
+                REQUIRE(full_board.countMarker(O) == 4);
             }
         }
 
         WHEN("#isGridFull is called") {
             THEN("returns true") {
-                REQUIRE(true == full_board.isGridFull());
+                REQUIRE(full_board.isGridFull() == true);
             }
         }
 
         WHEN("#validSlots is called") {
             THEN("#returns an empty vector") {
                 vector<int> empty_slots = {};
-                REQUIRE(empty_slots == full_board.validSlots());
+                REQUIRE(full_board.validSlots() == empty_slots);
             }
         }
     }

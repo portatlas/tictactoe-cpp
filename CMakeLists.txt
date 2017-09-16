@@ -15,7 +15,10 @@ set(SOURCE_FILES
         src/rules.hpp
         src/console.cpp
         src/console.hpp
-        src/marker.hpp)
+        src/game.hpp
+        src/game.cpp
+        src/human_player.cpp
+        src/human_player.hpp)
 add_executable(tictactoe_cpp ${SOURCE_FILES})
 add_library(source_lib ${SOURCE_FILES})
 
@@ -23,6 +26,8 @@ set (TEST_SOURCE_FILES
         test/board_formatter_test.cpp
         test/board_test.cpp
         test/console_test.cpp
-        test/rules_test.cpp)
+        test/rules_test.cpp
+        test/game_test.cpp
+        test/human_player_test.cpp)
 add_executable(test_lib ${TEST_SOURCE_FILES})
 target_link_libraries(test_lib source_lib)

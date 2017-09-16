@@ -9,7 +9,7 @@ SCENARIO("Rules: Validating Moves", "[rules-move]") {
     GIVEN("A valid move on an empty slot") {
         WHEN("#isValidMove is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::isValidMove(board, 1));
+                REQUIRE(Rules::isValidMove(board, 1) == true);
             }
         }
     }
@@ -17,9 +17,9 @@ SCENARIO("Rules: Validating Moves", "[rules-move]") {
     GIVEN("An invalid move is made that is out of bounds") {
         WHEN("#isValidMove is called") {
             THEN("return false") {
-                REQUIRE(false == Rules::isValidMove(board, -11));
-                REQUIRE(false == Rules::isValidMove(board, 0));
-                REQUIRE(false == Rules::isValidMove(board, 11));
+                REQUIRE(Rules::isValidMove(board, -11)== false );
+                REQUIRE(Rules::isValidMove(board, 0)== false );
+                REQUIRE(Rules::isValidMove(board, 11)== false );
             }
         }
     }
@@ -27,7 +27,7 @@ SCENARIO("Rules: Validating Moves", "[rules-move]") {
     GIVEN("An invalid move is made that is not a number") {
         WHEN("#isValidMove is called") {
             THEN("return false") {
-                REQUIRE(false == Rules::isValidMove(board, 'A'));
+                REQUIRE(Rules::isValidMove(board, 'A') == false);
             }
         }
     }
@@ -39,7 +39,7 @@ SCENARIO("Rules: Validating Moves", "[rules-move]") {
                                                " ", " ", " ",
                                                " ", " ", " "};
                 Board played_board(x_on_1_board);
-                REQUIRE(false == Rules::isValidMove(played_board, 1));
+                REQUIRE(Rules::isValidMove(played_board, 1) == false);
             }
         }
     }
@@ -51,7 +51,7 @@ SCENARIO("Rules: Validating Turn", "[rules-turn]") {
         Board board(9);
         WHEN("#switchTurn is called") {
             THEN("return X") {
-                REQUIRE(X == Rules::switchTurn(board));
+                REQUIRE(Rules::switchTurn(board) == X);
             }
         }
     }
@@ -62,7 +62,7 @@ SCENARIO("Rules: Validating Turn", "[rules-turn]") {
                                        " ", " ", " "};
         Board played_board(x_on_1_board);
         WHEN("#switchTurn is called") {
-            REQUIRE(O == Rules::switchTurn(played_board));
+            REQUIRE(Rules::switchTurn(played_board) == O);
         }
     }
 
@@ -72,7 +72,7 @@ SCENARIO("Rules: Validating Turn", "[rules-turn]") {
                                     " ", " ", " "};
         Board played_board(new_board);
         WHEN("#switchTurn is called") {
-            REQUIRE(O == Rules::switchTurn(played_board));
+            REQUIRE(Rules::switchTurn(played_board) == O);
         }
     }
 }
@@ -81,15 +81,15 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
     GIVEN("A 3X3 board") {
         WHEN("WINNING_SLOTS") {
             THEN("represents a vector of vectors of all indices of winning") {
-                vector< vector<int>> WINNING_SLOTS = {{1,2,3},
-                                                      {4,5,6},
-                                                      {7,8,9},
-                                                      {1,4,7},
-                                                      {2,5,8},
-                                                      {3,6,9},
-                                                      {1,5,9},
-                                                      {3,5,7}};
-                REQUIRE(WINNING_SLOTS == WINNING_SLOTS);
+                vector< vector<int>> EXPECTED_WINNING_SLOTS = {{1,2,3},
+                                                               {4,5,6},
+                                                               {7,8,9},
+                                                               {1,4,7},
+                                                               {2,5,8},
+                                                               {3,6,9},
+                                                               {1,5,9},
+                                                               {3,5,7}};
+                REQUIRE(Rules::WINNING_SLOTS == EXPECTED_WINNING_SLOTS);
             }
         }
     }
@@ -98,7 +98,7 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board board(9);
         WHEN("hasWinner is called") {
             THEN("return false") {
-                REQUIRE(false == Rules::hasWinner(board, X));
+                REQUIRE(Rules::hasWinner(board, X) == false);
             }
         }
     }
@@ -110,7 +110,7 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(x_win_board, X));
+                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
             }
         }
     }
@@ -122,7 +122,7 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(x_win_board, X));
+                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
             }
         }
     }
@@ -134,7 +134,7 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(x_win_board, X));
+                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
             }
         }
     }
@@ -146,7 +146,7 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(x_win_board, X));
+                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
             }
         }
     }
@@ -158,7 +158,7 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(x_win_board, X));
+                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
             }
         }
     }
@@ -170,7 +170,7 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(x_win_board, X));
+                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
             }
         }
     }
@@ -182,13 +182,13 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(x_win_board, X));
+                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
             }
         }
 
         WHEN("getWinner is called") {
             THEN("return X") {
-                REQUIRE(X == Rules::getResult(x_win_board, X));
+                REQUIRE(Rules::getResult(x_win_board, X) == X);
             }
         }
     }
@@ -200,13 +200,13 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board o_win_board(o_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::hasWinner(o_win_board, O));
+                REQUIRE(Rules::hasWinner(o_win_board, O) == true);
             }
         }
 
         WHEN("getResult is called") {
             THEN("return O") {
-                REQUIRE(O == Rules::getResult(o_win_board, O));
+                REQUIRE(Rules::getResult(o_win_board, O) == O);
             }
         }
     }
@@ -218,13 +218,13 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board no_winner_board(x_close_to_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(false == Rules::hasWinner(no_winner_board, X));
+                REQUIRE(Rules::hasWinner(no_winner_board, X) ==  false);
             }
         }
 
         WHEN("getResult is called") {
             THEN("return O") {
-                REQUIRE("Keep playing!" == Rules::getResult(no_winner_board, X));
+                REQUIRE(Rules::getResult(no_winner_board, X) == "Keep playing!");
             }
         }
     }
@@ -236,19 +236,19 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board draw_board(draw_grid);
         WHEN("isDraw is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::isDraw(draw_board, X));
+                REQUIRE(Rules::isDraw(draw_board, X) == true);
             }
         }
 
         WHEN("isOver is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::isOver(draw_board, O));
+                REQUIRE(Rules::isOver(draw_board, O) == true);
             }
         }
 
         WHEN("getResult is called") {
             THEN("return ") {
-                REQUIRE("Its a draw!" == Rules::getResult(draw_board, X));
+                REQUIRE(Rules::getResult(draw_board, X) == "Its a draw!");
             }
         }
     }
@@ -260,13 +260,13 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board active_board(ongoing_grid);
         WHEN("isDraw is called") {
             THEN("return false") {
-                REQUIRE(false == Rules::isDraw(active_board, X));
+                REQUIRE(Rules::isDraw(active_board, X) == false);
             }
         }
 
         WHEN("isOver is called") {
             THEN("return false") {
-                REQUIRE(false == Rules::isOver(active_board, X));
+                REQUIRE(Rules::isOver(active_board, X) == false);
             }
         }
     }
@@ -278,13 +278,13 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board o_win_board(o_win_grid);
         WHEN("isDraw is called") {
             THEN("return false") {
-                REQUIRE(false == Rules::isDraw(o_win_board, O));
+                REQUIRE(Rules::isDraw(o_win_board, O) == false);
             }
         }
 
         WHEN("isOver is called") {
             THEN("return true") {
-                REQUIRE(true == Rules::isOver(o_win_board, O));
+                REQUIRE(Rules::isOver(o_win_board, O) == true);
             }
         }
     }
