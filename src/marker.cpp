@@ -1,4 +1,4 @@
 #include "marker.hpp"
 
-string X = "X";
-string O = "O";
+std::string X = "X";
+std::string O = "O";

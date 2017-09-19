@@ -5,7 +5,9 @@ SCENARIO ("BoardFormatter") {
     BoardFormatter boardFormatter;
 
     GIVEN("A board with a full grid") {
-        vector<string> full_grid = {X, O, X, O, X, O, X, O, X};
+        std::vector<std::string> full_grid = {X, O, X,
+                                              O, X, O,
+                                              X, O, X};
         Board board(full_grid);
         WHEN("#format is called") {
             THEN("return the grid as a 3 x 3 matrix") {
@@ -17,7 +19,9 @@ SCENARIO ("BoardFormatter") {
     }
 
     GIVEN("A board with a grid of one empty slot") {
-        vector<string> one_empty_slot_grid = {" ", O, X, O, X, O, X, O, X};
+        std::vector<std::string> one_empty_slot_grid = {" ", O, X,
+                                                         O , X, O,
+                                                         X , O, X};
         Board board(one_empty_slot_grid);
         WHEN("#format is called") {
             THEN("return the grid as a 3 x 3 matrix and replace empty slots with the index") {
@@ -29,7 +33,9 @@ SCENARIO ("BoardFormatter") {
     }
 
     GIVEN("A a board with an empty grid") {
-        vector<string> empty_grid = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+        std::vector<std::string> empty_grid = {" ", " ", " ",
+                                               " ", " ", " ",
+                                               " ", " ", " "};
         Board board(empty_grid);
         WHEN("#format is called") {
             THEN("return the grid as a 3 x 3 matrix and replace all empty slots with the index") {

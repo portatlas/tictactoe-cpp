@@ -3,24 +3,22 @@
 
 #include <vector>
 
-using namespace std;
-
 class Board {
     public:
         explicit Board(unsigned int size);
-        explicit Board(vector<string> grid);
+        explicit Board(std::vector<std::string> grid);
 
         unsigned int getSize();
-        vector<string> getGrid();
-        string getSlot(int position);
+        std::vector<std::string> getGrid();
+        std::string getSlot(int position);
         bool isSlotEmpty(int position);
-        Board fillSlot(int position, string &marker);
-        long countMarker(string marker);
+        Board fillSlot(int position, std::string &marker);
+        long countMarker(std::string marker);
         bool isGridFull();
-        vector<int> validSlots();
+        std::vector<int> validSlots();
     private:
         unsigned int _size;
-        vector<string> _grid;
+        std::vector<std::string> _grid;
 };
 
-#endif
+#endif //TICTACTOE_CPP_BOARD_H

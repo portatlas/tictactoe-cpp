@@ -1,11 +1,11 @@
 #include "console.hpp"
 
-void Console::display(ostream& output, string message) {
-    output << message;
+void Console::display(std::string message) {
+    std::cout << message;
 };
 
-string Console::retrieve(istream& is) {
-    string input = " ";
-    is >> input;
+std::string Console::retrieve() {
+    std::string input = " ";
+    std::cin >> input;
     return input;
 };

@@ -6,21 +6,22 @@
 
 class Rules {
     public:
-        static const vector <vector <int>> WINNING_SLOTS;
+        static const std::vector <std::vector <int>> WINNING_SLOTS;
 
         static bool isValidMove(Board board, int move);
-        static string switchTurn(Board board);
-        static bool hasWinner(Board board, string marker);
-        static bool isDraw(Board board, string &marker);
-        static bool isOver(Board board, string marker);
-        static string getResult(Board board, string marker);
+        static std::string currentTurn(Board board);
+        static std::string switchTurn(Board board);
+        static bool hasWinner(Board board);
+        static bool isDraw(Board board);
+        static bool isOver(Board board);
+        static std::string getResult(Board board);
 
     private:
         static bool isMoveInValidSlots(int move,
-                                vector<int> &valid_slots);
+                                std::vector<int> &valid_slots);
         static bool isMarkerInWinSlots(Board &board,
-                                const string &marker,
-                                const vector<int> &slot);
+                                const std::string &marker,
+                                const std::vector<int> &slot);
 };
 
-#endif
+#endif //TICTACTOE_CPP_RULES_H

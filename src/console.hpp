@@ -1,14 +1,15 @@
 #ifndef TICTACTOE_CPP_CONSOLE_H
 #define TICTACTOE_CPP_CONSOLE_H
 
-#include <iostream>
+#include "board_formatter.hpp"
 
-using namespace std;
+#include <string>
+#include <iostream>
 
 class Console {
     public:
-        static void display(ostream& output, string message);
-        static string retrieve(istream& is);
+        void display(std::string message);
+        std::string retrieve();
 };
 
-#endif
+#endif //TICTACTOE_CPP_CONSOLE_H

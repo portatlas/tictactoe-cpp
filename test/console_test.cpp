@@ -2,14 +2,17 @@
 #include "../src/console.hpp"
 
 SCENARIO ("Console") {
-
+    Console console;
     GIVEN("A message") {
-        string message = "hi";
+        std::string message = "hi";
         WHEN("#display is called") {
-            stringstream out;
-            Console::display(out, message);
-            THEN("the message is passed to an output stream") {
-                REQUIRE(out.str() == "hi");
+            THEN("the message is passed to the console") {
+                std::ostringstream out;
+                std::streambuf *sbuf = std::cout.rdbuf();
+                std::cout.rdbuf(out.rdbuf());
+                console.display("hello");
+                std::cout.rdbuf(sbuf);
+                REQUIRE(out.str() == "hello");
             }
         }
     }
@@ -17,8 +20,11 @@ SCENARIO ("Console") {
     GIVEN("A prompt") {
         WHEN("#retrieve is called") {
             THEN("return the input provided by the user") {
-                istringstream iss("Y");
-                REQUIRE(Console::retrieve(iss) == "Y");
+                std::streambuf* orig = std::cin.rdbuf();
+                std::istringstream input("Y");
+                std::cin.rdbuf(input.rdbuf());
+                REQUIRE(console.retrieve() == "Y");
+                std::cin.rdbuf(orig);
             }
         }
     }

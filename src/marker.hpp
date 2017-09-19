@@ -3,9 +3,7 @@
 
 #include <string>
 
-using namespace std;
+extern std::string X;
+extern std::string O;
 
-extern string X;
-extern string O;
-
-#endif
+#endif //TICTACTOE_CPP_MARKER_H

@@ -35,9 +35,9 @@ SCENARIO("Rules: Validating Moves", "[rules-move]") {
     GIVEN("An invalid move is made on an occupied spot") {
         WHEN("#isValidMove is called") {
             THEN("return false") {
-                vector<string> x_on_1_board = { X , " ", " ",
-                                               " ", " ", " ",
-                                               " ", " ", " "};
+                std::vector<std::string> x_on_1_board = { X , " ", " ",
+                                                         " ", " ", " ",
+                                                         " ", " ", " "};
                 Board played_board(x_on_1_board);
                 REQUIRE(Rules::isValidMove(played_board, 1) == false);
             }
@@ -57,22 +57,28 @@ SCENARIO("Rules: Validating Turn", "[rules-turn]") {
     }
 
     GIVEN("A board grid with X on the first slot") {
-        vector<string> x_on_1_board = { X , " ", " ",
-                                       " ", " ", " ",
-                                       " ", " ", " "};
+        std::vector<std::string> x_on_1_board = { X , " ", " ",
+                                                 " ", " ", " ",
+                                                 " ", " ", " "};
         Board played_board(x_on_1_board);
         WHEN("#switchTurn is called") {
             REQUIRE(Rules::switchTurn(played_board) == O);
         }
+        WHEN("#currentTurn is called") {
+            REQUIRE(Rules::currentTurn(played_board) == X);
+        }
     }
 
     GIVEN("A board grid with X,O,X on 1,2,3 respective") {
-        vector<string> new_board = { X ,  O ,  X ,
-                                    " ", " ", " ",
-                                    " ", " ", " "};
+        std::vector<std::string> new_board = { X ,  O ,  X ,
+                                              " ", " ", " ",
+                                              " ", " ", " "};
         Board played_board(new_board);
         WHEN("#switchTurn is called") {
             REQUIRE(Rules::switchTurn(played_board) == O);
+        }
+        WHEN("#currentTurn is called") {
+            REQUIRE(Rules::currentTurn(played_board) == X);
         }
     }
 }
@@ -81,14 +87,14 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
     GIVEN("A 3X3 board") {
         WHEN("WINNING_SLOTS") {
             THEN("represents a vector of vectors of all indices of winning") {
-                vector< vector<int>> EXPECTED_WINNING_SLOTS = {{1,2,3},
-                                                               {4,5,6},
-                                                               {7,8,9},
-                                                               {1,4,7},
-                                                               {2,5,8},
-                                                               {3,6,9},
-                                                               {1,5,9},
-                                                               {3,5,7}};
+                std::vector< std::vector<int>> EXPECTED_WINNING_SLOTS = {{1,2,3},
+                                                                         {4,5,6},
+                                                                         {7,8,9},
+                                                                         {1,4,7},
+                                                                         {2,5,8},
+                                                                         {3,6,9},
+                                                                         {1,5,9},
+                                                                         {3,5,7}};
                 REQUIRE(Rules::WINNING_SLOTS == EXPECTED_WINNING_SLOTS);
             }
         }
@@ -98,193 +104,193 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         Board board(9);
         WHEN("hasWinner is called") {
             THEN("return false") {
-                REQUIRE(Rules::hasWinner(board, X) == false);
+                REQUIRE(Rules::hasWinner(board) == false);
             }
         }
     }
 
     GIVEN("A board with a winner on the first row") {
-        vector<string> x_win_grid = { X,   X,   X,
-                                     " ", " ", " ",
-                                     " ", " ", " "};
+        std::vector<std::string> x_win_grid = { X ,  X ,  X ,
+                                               " ", " ", " ",
+                                               " ", " ", " "};
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
+                REQUIRE(Rules::hasWinner(x_win_board) == true);
             }
         }
     }
 
     GIVEN("A board with a winner on the second row") {
-        vector<string> x_win_grid = {" ", " ", " ",
-                                      X,   X,   X,
-                                     " ", " ", " "};
+        std::vector<std::string> x_win_grid = {" ", " ", " ",
+                                                X ,  X ,  X ,
+                                               " ", " ", " "};
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
+                REQUIRE(Rules::hasWinner(x_win_board) == true);
             }
         }
     }
 
     GIVEN("A board with a winner on the third row") {
-        vector<string> x_win_grid = {" ", " ", " ",
-                                     " ", " ", " ",
-                                      X,   X,   X};
+        std::vector<std::string> x_win_grid = {" ", " ", " ",
+                                               " ", " ", " ",
+                                                X ,  X ,  X };
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
+                REQUIRE(Rules::hasWinner(x_win_board) == true);
             }
         }
     }
 
     GIVEN("A board with a winner on the first column") {
-        vector<string> x_win_grid = {X, " ", " ",
-                                     X, " ", " ",
-                                     X, " ", " "};
+        std::vector<std::string> x_win_grid = {X, " ", " ",
+                                               X, " ", " ",
+                                               X, " ", " "};
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
+                REQUIRE(Rules::hasWinner(x_win_board) == true);
             }
         }
     }
 
     GIVEN("A board with a winner on the second column") {
-        vector<string> x_win_grid = {" ", X, " ",
-                                     " ", X, " ",
-                                     " ", X, " "};
+        std::vector<std::string> x_win_grid = {" ", X, " ",
+                                               " ", X, " ",
+                                               " ", X, " "};
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
+                REQUIRE(Rules::hasWinner(x_win_board) == true);
             }
         }
     }
 
     GIVEN("A board with a winner on the third column") {
-        vector<string> x_win_grid = {" ", " ", X,
-                                     " ", " ", X,
-                                     " ", " ", X};
+        std::vector<std::string> x_win_grid = {" ", " ", X,
+                                               " ", " ", X,
+                                               " ", " ", X};
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
+                REQUIRE(Rules::hasWinner(x_win_board) == true);
             }
         }
     }
 
     GIVEN("A board with a winner on the top right to bottom left diagonal") {
-        vector<string> x_win_grid = { X , " ", " ",
-                                     " ",  X , " ",
-                                     " ", " ",  X};
+        std::vector<std::string> x_win_grid = { X , " ", " ",
+                                               " ",  X , " ",
+                                               " ", " ",  X};
         Board x_win_board(x_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(x_win_board, X) == true);
+                REQUIRE(Rules::hasWinner(x_win_board) == true);
             }
         }
 
         WHEN("getWinner is called") {
             THEN("return X") {
-                REQUIRE(Rules::getResult(x_win_board, X) == X);
+                REQUIRE(Rules::getResult(x_win_board) == "X wins!\n");
             }
         }
     }
 
     GIVEN("A board with a winner on the top right to bottom left diagonal") {
-        vector<string> o_win_grid = { O , " ", " ",
-                                      " ",  O , " ",
-                                      " ", " ",  O};
+        std::vector<std::string> o_win_grid = { O , " ", " ",
+                                               " ",  O , " ",
+                                               " ", " ",  O};
         Board o_win_board(o_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(o_win_board, O) == true);
+                REQUIRE(Rules::hasWinner(o_win_board) == true);
             }
         }
 
         WHEN("getResult is called") {
             THEN("return O") {
-                REQUIRE(Rules::getResult(o_win_board, O) == O);
+                REQUIRE(Rules::getResult(o_win_board) == "O wins!\n");
             }
         }
     }
 
     GIVEN("A board with one move a way from a win") {
-        vector<string> x_close_to_win_grid = { X,  " ",  X ,
-                                              " ", " ", " ",
-                                              " ", " ", " "};
+        std::vector<std::string> x_close_to_win_grid = { X,  " ",  X ,
+                                                       " ", " ", " ",
+                                                       " ", " ", " "};
         Board no_winner_board(x_close_to_win_grid);
         WHEN("hasWinner is called") {
             THEN("return true") {
-                REQUIRE(Rules::hasWinner(no_winner_board, X) ==  false);
+                REQUIRE(Rules::hasWinner(no_winner_board) ==  false);
             }
         }
 
         WHEN("getResult is called") {
             THEN("return O") {
-                REQUIRE(Rules::getResult(no_winner_board, X) == "Keep playing!");
+                REQUIRE(Rules::getResult(no_winner_board) == "O's turn to move...\n\n");
             }
         }
     }
 
     GIVEN("A board with a draw") {
-        vector<string> draw_grid = { X, O, X ,
-                                     O, X, O,
-                                     O, X, O};
+        std::vector<std::string> draw_grid = { X, O, X ,
+                                               O, X, O,
+                                               O, X, O};
         Board draw_board(draw_grid);
         WHEN("isDraw is called") {
             THEN("return true") {
-                REQUIRE(Rules::isDraw(draw_board, X) == true);
+                REQUIRE(Rules::isDraw(draw_board) == true);
             }
         }
 
         WHEN("isOver is called") {
             THEN("return true") {
-                REQUIRE(Rules::isOver(draw_board, O) == true);
+                REQUIRE(Rules::isOver(draw_board) == true);
             }
         }
 
         WHEN("getResult is called") {
             THEN("return ") {
-                REQUIRE(Rules::getResult(draw_board, X) == "Its a draw!");
+                REQUIRE(Rules::getResult(draw_board) == "Its a draw!\n");
             }
         }
     }
 
     GIVEN("A board with an empty slot on the grid") {
-        vector<string> ongoing_grid = {X,  O , X,
-                                       O, " ", O,
-                                       O,  X , O};
+        std::vector<std::string> ongoing_grid = {X,  O , X,
+                                                 O, " ", O,
+                                                 O,  X , O};
         Board active_board(ongoing_grid);
         WHEN("isDraw is called") {
             THEN("return false") {
-                REQUIRE(Rules::isDraw(active_board, X) == false);
+                REQUIRE(Rules::isDraw(active_board) == false);
             }
         }
 
         WHEN("isOver is called") {
             THEN("return false") {
-                REQUIRE(Rules::isOver(active_board, X) == false);
+                REQUIRE(Rules::isOver(active_board) == false);
             }
         }
     }
 
     GIVEN("A board with a winner") {
-        vector<string> o_win_grid = { O, X, X,
-                                      X, O, O,
-                                      X, X, O};
-        Board o_win_board(o_win_grid);
+        std::vector<std::string> x_win_grid = { X, O, X,
+                                                X, O, O,
+                                                X, X, O};
+        Board x_win_board(x_win_grid);
         WHEN("isDraw is called") {
             THEN("return false") {
-                REQUIRE(Rules::isDraw(o_win_board, O) == false);
+                REQUIRE(Rules::isDraw(x_win_board) == false);
             }
         }
 
         WHEN("isOver is called") {
             THEN("return true") {
-                REQUIRE(Rules::isOver(o_win_board, O) == true);
+                REQUIRE(Rules::isOver(x_win_board) == true);
             }
         }
     }

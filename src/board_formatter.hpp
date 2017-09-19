@@ -6,9 +6,9 @@
 
 class BoardFormatter {
     public:
-        static string format(Board board);
+        static std::string format(Board board);
     private:
-        static vector<string> indexEmptySlots(Board board);
+        static std::vector<std::string> indexEmptySlots(Board board);
 };
 
-#endif
+#endif //TICTACTOE_CPP_BOARD_FORMATTER_H

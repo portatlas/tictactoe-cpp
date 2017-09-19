@@ -1,6 +1,6 @@
 #include "human_player.hpp"
 
-int HumanPlayer::getMove(Board board, Rules rules, Console console){
+int HumanPlayer::getMove(Board board, Rules rules, Console console) {
     int move = convertStrToInt(console, console.retrieve());
     if(rules.isValidMove(board, move)) {
         return move;
@@ -11,7 +11,7 @@ int HumanPlayer::getMove(Board board, Rules rules, Console console){
     return move;
 };
 
-int HumanPlayer::convertStrToInt(Console console, std::string input){
+int HumanPlayer::convertStrToInt(Console console, std::string input) {
     int slot;
     try {
         slot = stoi(input);
