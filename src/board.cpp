@@ -1,20 +1,17 @@
 #include "marker.hpp"
 #include "board.hpp"
 
-string X = "X";
-string O = "O";
-
-Board::Board(int size) {
+Board::Board(unsigned int size) {
     _size = size;
-    _grid = vector<string>(size, " ");
+    _grid = vector<string>(_size, " ");
 }
 
 Board::Board(vector<string> grid) {
-    _size = grid.size();
+    _size = (int)grid.size();
     _grid = grid;
 }
 
-int Board::getSize() {
+unsigned int Board::getSize() {
     return _size;
 };
 
@@ -27,11 +24,10 @@ string Board::getSlot(int position) {
 };
 
 bool Board::isSlotEmpty(int position) {
-    return (getSlot(position) == " ") ? true : false;
+    return getSlot(position) == " ";
 };
 
-Board Board::fillSlot(int position) {
-    string marker = whoseTurn();
+Board Board::fillSlot(int position, string &marker) {
     _grid[position - 1] = marker;
     Board new_board(_grid);
     return new_board;
@@ -46,12 +42,8 @@ long Board::countMarker(string marker){
     return marker_count;
 }
 
-string Board::whoseTurn(){
-    return (countMarker(X) > countMarker(O)) ? O : X;
-};
-
 bool Board::isGridFull(){
-    return (countMarker(X) + countMarker(O) == _size) ? true : false;
+    return countMarker(X) + countMarker(O) == _size;
 }
 
 vector<int> Board::validSlots(){
