@@ -7,13 +7,12 @@ class Board {
     public:
         explicit Board(unsigned int size);
         explicit Board(std::vector<std::string> grid);
-
         unsigned int getSize();
         std::vector<std::string> getGrid();
         std::string getSlot(int position);
         bool isSlotEmpty(int position);
         Board fillSlot(int position, std::string &marker);
-        long countMarker(std::string marker);
+        long countMarker(std::string &marker);
         bool isGridFull();
         std::vector<int> validSlots();
     private:

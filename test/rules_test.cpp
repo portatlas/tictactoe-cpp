@@ -193,6 +193,12 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         }
 
         WHEN("getWinner is called") {
+            THEN("return true") {
+                REQUIRE(Rules::getWinner(x_win_board) == X);
+            }
+        }
+
+        WHEN("getResult is called") {
             THEN("return X") {
                 REQUIRE(Rules::getResult(x_win_board) == "X wins!\n");
             }
@@ -207,6 +213,12 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         WHEN("hasWinner is called") {
             THEN("return true") {
                 REQUIRE(Rules::hasWinner(o_win_board) == true);
+            }
+        }
+
+        WHEN("getWinner is called") {
+            THEN("return O") {
+                REQUIRE(Rules::getWinner(o_win_board) == O);
             }
         }
 
@@ -225,6 +237,12 @@ SCENARIO ("Rules: Validating Game Results", "[rules-result]") {
         WHEN("hasWinner is called") {
             THEN("return true") {
                 REQUIRE(Rules::hasWinner(no_winner_board) ==  false);
+            }
+        }
+
+        WHEN("getWinner is called") {
+            THEN("return true") {
+                REQUIRE(Rules::getWinner(no_winner_board) == "No winner");
             }
         }
 

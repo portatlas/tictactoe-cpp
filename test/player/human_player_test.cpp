@@ -1,18 +1,18 @@
-#include "../lib/catch.hpp"
-#include "../src/human_player.hpp"
+#include "../../lib/catch.hpp"
+#include "../../src/player/human_player.hpp"
 
 SCENARIO ("Human Player") {
-    GIVEN("The rules and a console ui") {
+    GIVEN("A human player") {
         Console console;
         Rules rules;
-        HumanPlayer humanplayer;
+        HumanPlayer humanplayer(rules, console);
 
         WHEN("#getMove is passed an empty board and the user inputs 1") {
             Board board(9);
             THEN("return 1 as an int") {
                 std::istringstream input("1");
                 std::cin.rdbuf(input.rdbuf());
-                REQUIRE(humanplayer.getMove(board, rules, console) == 1);
+                REQUIRE(humanplayer.getMove(board) == 1);
             }
         }
 
@@ -25,7 +25,7 @@ SCENARIO ("Human Player") {
                     std::istringstream new_input("1");
                     std::cin.rdbuf(new_input.rdbuf());
                     THEN("return 1 as an int") {
-                        REQUIRE(humanplayer.getMove(board, rules, console) == 1);
+                        REQUIRE(humanplayer.getMove(board) == 1);
                     }
                 }
             }
@@ -43,7 +43,7 @@ SCENARIO ("Human Player") {
                     std::istringstream new_input("5");
                     std::cin.rdbuf(new_input.rdbuf());
                     THEN("return 1 as an int") {
-                        REQUIRE(humanplayer.getMove(board, rules, console) == 5);
+                        REQUIRE(humanplayer.getMove(board) == 5);
                     }
                 }
             }

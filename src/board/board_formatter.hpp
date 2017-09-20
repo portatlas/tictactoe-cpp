@@ -2,7 +2,7 @@
 #define TICTACTOE_CPP_BOARD_FORMATTER_H
 
 #include "board.hpp"
-#include "marker.hpp"
+#include "../marker.hpp"
 
 class BoardFormatter {
     public:

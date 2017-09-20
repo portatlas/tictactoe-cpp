@@ -1,9 +1,9 @@
-#include "marker.hpp"
+#include "../marker.hpp"
 #include "board.hpp"
 
 Board::Board(unsigned int size) :
     _size(size),
-    _grid(std::vector<std::string>(_size, " "))
+    _grid(std::vector<std::string>(_size, EMPTY))
 {}
 
 Board::Board(std::vector<std::string> grid) {
@@ -24,7 +24,7 @@ std::string Board::getSlot(int position) {
 };
 
 bool Board::isSlotEmpty(int position) {
-    return getSlot(position) == " ";
+    return getSlot(position) == EMPTY;
 };
 
 Board Board::fillSlot(int position, std::string &marker) {
@@ -33,7 +33,7 @@ Board Board::fillSlot(int position, std::string &marker) {
     return new_board;
 };
 
-long Board::countMarker(std::string marker) {
+long Board::countMarker(std::string &marker) {
     long marker_count = count_if(_grid.begin(),
                                  _grid.end(),
                                  [marker](std::string slot) {

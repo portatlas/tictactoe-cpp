@@ -1,5 +1,5 @@
-#include "../lib/catch.hpp"
-#include "../src/board_formatter.hpp"
+#include "../../lib/catch.hpp"
+#include "../../src/board/board_formatter.hpp"
 
 SCENARIO ("BoardFormatter") {
     BoardFormatter boardFormatter;

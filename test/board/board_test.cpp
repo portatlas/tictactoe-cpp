@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
-#include "../lib/catch.hpp"
-#include "../src/marker.hpp"
-#include "../src/board.hpp"
+#include "../../lib/catch.hpp"
+#include "../../src/marker.hpp"
+#include "../../src/board/board.hpp"
 
 SCENARIO ("Board") {
     std::vector<std::string> empty_grid = {" ", " ", " ",

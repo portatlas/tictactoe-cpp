@@ -1,7 +1,7 @@
 #ifndef TICTACTOE_CPP_CONSOLE_H
 #define TICTACTOE_CPP_CONSOLE_H
 
-#include "board_formatter.hpp"
+#include "board/board_formatter.hpp"
 
 #include <string>
 #include <iostream>

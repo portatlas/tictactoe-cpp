@@ -1,8 +1,6 @@
 #include <iostream>
 #include "rules.hpp"
 
-
-
 const std::vector <std::vector <int>> Rules::WINNING_SLOTS ({{1,2,3},
                                                              {4,5,6},
                                                              {7,8,9},
@@ -17,15 +15,15 @@ bool Rules::isValidMove(Board board, int move) {
     return isMoveInValidSlots(move, valid_slots);
 }
 
-std::string Rules::switchTurn(Board board) {
+std::string Rules::switchTurn(Board &board) {
     return(board.countMarker(X) > board.countMarker(O)) ? O : X;
 }
 
-std::string Rules::currentTurn(Board board) {
+std::string Rules::currentTurn(Board &board) {
     return(board.countMarker(X) > board.countMarker(O)) ? X : O;
 }
 
-bool Rules::hasWinner(Board board) {
+bool Rules::hasWinner(Board &board) {
     std::string marker = currentTurn(board);
     for(auto& row:WINNING_SLOTS) {
         for(auto& slot:WINNING_SLOTS) {
@@ -37,15 +35,22 @@ bool Rules::hasWinner(Board board) {
     return false;
 }
 
-bool Rules::isDraw(Board board) {
+std::string Rules::getWinner(Board &board) {
+    if (hasWinner(board)) {
+        return currentTurn(board);
+    }
+    return "No winner";
+};
+
+bool Rules::isDraw(Board &board) {
     return board.validSlots().empty() && !hasWinner(board);
 };
 
-bool Rules::isOver(Board board) {
+bool Rules::isOver(Board &board) {
     return isDraw(board) || hasWinner(board);
 };
 
-std::string Rules::getResult(Board board) {
+std::string Rules::getResult(Board &board) {
     std::string marker = currentTurn(board);
     if (hasWinner(board)) {
         return marker + " wins!\n";

@@ -5,5 +5,6 @@
 
 extern std::string X;
 extern std::string O;
+extern std::string EMPTY;
 
 #endif //TICTACTOE_CPP_MARKER_H
