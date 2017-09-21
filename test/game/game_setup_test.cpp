@@ -6,28 +6,28 @@ SCENARIO("GameSetup") {
     Console console;
     Rules rules;
 
-    GIVEN("A user wants to play a computer") {
-        WHEN("#getOpponent is called and user inputs c") {
-            THEN("return true") {
+    GIVEN("A user wants to play a game") {
+        WHEN("#setPlayer is called and user inputs c") {
+            THEN("return a computer player") {
                 std::cout.rdbuf(nullptr);
                 std::istringstream new_input("c");
                 std::cin.rdbuf(new_input.rdbuf());
-                Player* actualPlayer = gamesetup.getOpponent(console, rules);
-                Player* expectedPlayer = new ComputerPlayer(rules);
-                REQUIRE(typeid(actualPlayer).name() == typeid(expectedPlayer).name());
+                Player* actualPlayer1 = gamesetup.setPlayer(console, rules, X);
+                Player* expectedPlayer = new ComputerPlayer(O, rules);
+                REQUIRE(typeid(actualPlayer1).name() == typeid(expectedPlayer).name());
             }
         }
     }
 
     GIVEN("A user wants to play a human") {
-        WHEN("#getOpponent is called and user inputs h") {
-            THEN("return true") {
+        WHEN("#setPlayer is called and user inputs h") {
+            THEN("returns a humany player") {
                 std::cout.rdbuf(nullptr);
                 std::istringstream new_input("h");
                 std::cin.rdbuf(new_input.rdbuf());
-                Player* actualPlayer = gamesetup.getOpponent(console, rules);
+                Player* actualPlayer2 = gamesetup.setPlayer(console, rules, O);
                 Player* expectedPlayer = new HumanPlayer(rules, console);
-                REQUIRE(typeid(actualPlayer).name() == typeid(expectedPlayer).name());
+                REQUIRE(typeid(actualPlayer2).name() == typeid(expectedPlayer).name());
             }
         }
     }
@@ -45,7 +45,7 @@ SCENARIO("GameSetup") {
 
     GIVEN("A user does not wants to play a game") {
         WHEN("#willPlay is called and user inputs n") {
-            THEN("return true") {
+            THEN("return false") {
                 std::cout.rdbuf(nullptr);
                 std::istringstream new_input("n");
                 std::cin.rdbuf(new_input.rdbuf());

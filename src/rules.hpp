@@ -9,6 +9,7 @@ class Rules {
         static const std::vector <std::vector <int>> WINNING_SLOTS;
 
         static bool isValidMove(Board board, int move);
+        static std::string getOpponent(std::string &marker);
         static std::string currentTurn(Board &board);
         static std::string switchTurn(Board &board);
         static bool hasWinner(Board &board);

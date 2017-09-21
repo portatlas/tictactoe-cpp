@@ -5,10 +5,11 @@
 
 class ComputerPlayer : public Player {
     public:
-        explicit ComputerPlayer(Rules &rules);
-        virtual int getMove(Board board);
-        int minimax(Board board, int depth, bool isMax);
+        ComputerPlayer(std::string marker, Rules &rules);
+        int getMove(Board board);
+        int minimax(Board board, int depth, bool is_max_player);
     private:
+        std::string _marker;
         Rules _rules;
 };
 

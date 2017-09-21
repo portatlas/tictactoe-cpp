@@ -47,6 +47,22 @@ SCENARIO("Rules: Validating Moves", "[rules-move]") {
 
 SCENARIO("Rules: Validating Turn", "[rules-turn]") {
 
+    GIVEN("X") {
+        WHEN("#getOpponent is called") {
+            THEN("return O") {
+                REQUIRE(Rules::getOpponent(X) == O);
+            }
+        }
+    }
+
+    GIVEN("O") {
+        WHEN("#getOpponent is called") {
+            THEN("return X") {
+                REQUIRE(Rules::getOpponent(O) == X);
+            }
+        }
+    }
+
     GIVEN("An empty board grid") {
         Board board(9);
         WHEN("#switchTurn is called") {

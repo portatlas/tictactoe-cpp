@@ -1,18 +1,18 @@
 #include "game_setup.hpp"
 
-Player* GameSetup::getOpponent(Console &console, Rules &rules) {
-    console.display("Select your opponent:\n  c for computer\n  h for human\n");
-    std::string opponent = console.retrieve();
-    Player* player2;
-    if (opponent == "c") {
-        player2 = new ComputerPlayer(rules);
-    } else if (opponent == "h") {
-        player2 = new HumanPlayer(rules, console);
+Player* GameSetup::setPlayer(Console &console, Rules &rules, std::string marker) {
+    console.display("Select " + marker + " player\n   c for computer\n   h for human\n");
+    std::string selectedPlayer = console.retrieve();
+    Player* player;
+    if (selectedPlayer == "c") {
+        player = new ComputerPlayer(marker, rules);
+    } else if (selectedPlayer == "h") {
+        player = new HumanPlayer(rules, console);
     } else {
         console.display("Come again?\n");
-        getOpponent(console, rules);
+        setPlayer(console, rules, marker);
     }
-    return player2;
+    return player;
 }
 
 bool GameSetup::willPlay(Console &console) {

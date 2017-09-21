@@ -8,7 +8,7 @@
 
 class GameSetup {
     public:
-        static Player* getOpponent(Console &console, Rules &rules);
+        static Player* setPlayer(Console &console, Rules &rules, std::string marker);
         static bool willPlay(Console &console);
 };
 
