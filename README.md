@@ -1,20 +1,34 @@
-# TICTACTOE C++
+# TICTACTOE written in C++
 
 ## Dependencies
-1. You will need (cmake)[https://cmake.org/] to compile the project
+* You will need [cmake](https://cmake.org/) to compile the project
+* You can install cmake with brew ```$ brew install cmake```
+* Note: other c++ compilers may work as well
 
 ## Build and Compile
-1. Run the CMakeLists.txt to build and compile the code
-```$ cmake -H. -Bbuild```
-```$ cmake --build build -- -j3```
+* Run the following command in the project root directory where the CMakeLists.txt exists
+
+	```$ cmake -H. -Bbuild```
+
+	```$ cmake --build build -- -j3```
+
 
 ## Unit Test
-1. Test are written with (Catch)[https://github.com/philsquared/Catch]
-2. Excecute the test_lib file to run all the tests
-```$ ./test_lib```
+* Run the following command to run the unit tests
 
-## Play
-1. To play the game
-2. Execute the tictactoe_cpp file
-```$ ./tictactoe_cpp```
+	```$ ./build/test_lib```
 
+* Appending the -s option will provide you with additional details
+
+	```$ ./build/test_lib -s```
+
+* Test are written with [Catch](https://github.com/philsquared/Catch)
+
+## To play the game
+* Execute the tictactoe_cpp file
+
+	```$ ./build/tictactoe_cpp```
+
+## Main Features
+* Select opponent type (human vs human, human vs computer, computer vs human, computer vs computer)
+* Computer will never loose (although the computer is slow when going first and making the first move)

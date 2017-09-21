@@ -1,7 +1,7 @@
 #include "game_setup.hpp"
 
 Player* GameSetup::setPlayer(Console &console, Rules &rules, std::string marker) {
-    console.display("Select " + marker + " player\n   c for computer\n   h for human\n");
+    console.display("Select " + marker + " player:\n   c for computer\n   h for human\n");
     std::string selectedPlayer = console.retrieve();
     Player* player;
     if (selectedPlayer == "c") {
