@@ -6,7 +6,7 @@ SCENARIO("GameSetup") {
     Console console;
     Rules rules;
 
-    GIVEN("A user wants to play a game") {
+    GIVEN("A user wants to set a player as a computer") {
         WHEN("#setPlayer is called and user inputs c") {
             THEN("return a computer player") {
                 std::cout.rdbuf(nullptr);
@@ -19,7 +19,7 @@ SCENARIO("GameSetup") {
         }
     }
 
-    GIVEN("A user wants to play a human") {
+    GIVEN("A user wants set a player as a human") {
         WHEN("#setPlayer is called and user inputs h") {
             THEN("returns a humany player") {
                 std::cout.rdbuf(nullptr);

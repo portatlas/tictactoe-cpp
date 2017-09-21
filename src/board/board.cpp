@@ -15,10 +15,6 @@ unsigned int Board::getSize() {
     return _size;
 };
 
-std::vector<std::string> Board::getGrid() {
-    return _grid;
-};
-
 std::string Board::getSlot(int position) {
     return _grid[position - 1];
 };

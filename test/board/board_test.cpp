@@ -16,12 +16,6 @@ SCENARIO ("Board: Empty Board ", "[empty-board]") {
             }
         }
 
-        WHEN("#getGrid is called") {
-            THEN("return an empty grid") {
-                REQUIRE(board.getGrid() == empty_grid);
-            }
-        }
-
         WHEN("#getSlot is called for the first slot") {
             THEN("return an empty slot") {
                 REQUIRE(board.getSlot(1) == " ");
@@ -65,15 +59,6 @@ SCENARIO("Board: Marked Board", "[marked-board]") {
     GIVEN("Marked Board with X on the first slot") {
         Board board(9);
         board.fillSlot(1, X);
-        WHEN("#getGrid is called") {
-            THEN("return a new board with X on the first slot") {
-                std::vector<std::string> marked_grid = { X , " ", " ",
-                                                        " ", " ", " ",
-                                                        " ", " ", " "};
-                Board expected_board(marked_grid);
-                REQUIRE(board.getGrid() == expected_board.getGrid());
-            }
-        }
 
         WHEN("#getSlot is called with the first slot") {
             THEN("return X since it was placed on the first slot") {
@@ -94,7 +79,7 @@ SCENARIO("Board: Marked Board", "[marked-board]") {
         }
 
         WHEN("#validSlots is called") {
-            THEN("return a vector with values from 2 to 8") {
+            THEN("return a vector with values from 2 to 9") {
                 std::vector<int> empty_slots = {2, 3, 4, 5, 6, 7, 8, 9};
                 REQUIRE(board.validSlots() == empty_slots);
             }
@@ -102,21 +87,14 @@ SCENARIO("Board: Marked Board", "[marked-board]") {
 
         WHEN("#fillSlot is called with 2") {
             board.fillSlot(2, O);
-            AND_WHEN("#getGrid is called") {
-                THEN("return a new grid with X and O on 1 and 2 respectively") {
-                    std::vector<std::string> marked_grid = { X ,  O , " ",
-                                                            " ", " ", " ",
-                                                            " ", " ", " "};
-                    Board expected_board(marked_grid);
-                    REQUIRE(board.getGrid() == expected_board.getGrid());
+            AND_WHEN("#getSlot is called on 2") {
+                THEN("return O") {
+                    REQUIRE(board.getSlot(2) == O);
                 }
                 AND_WHEN("#fillSlot is called with 7") {
-                    THEN("#getGrid return a new grid with X,O,X on 1,2,7 respectively") {
-                        std::vector<std::string> marked_grid = { X ,  O , " ",
-                                                                " ", " ", " ",
-                                                                 X , " ", " "};
-                        Board expected_board(marked_grid);
-                        REQUIRE(board.fillSlot(7, X).getGrid() == expected_board.getGrid());
+                    board.fillSlot(7, X);
+                    THEN("#getSlot on 7 returns X") {
+                        REQUIRE(board.getSlot(7) == X);
                     }
                 }
             }
@@ -128,12 +106,6 @@ SCENARIO("Board: Marked Board", "[marked-board]") {
                                                 " ", " ", " ",
                                                  O ,  O , " "};
         Board active_board(marked_grid);
-
-        WHEN("#getGrid is called") {
-            THEN("return the grid it was initialized with") {
-                REQUIRE(active_board.getGrid() == marked_grid);
-            }
-        }
 
         WHEN("#countMarker is called") {
             THEN("return 3 for X") {
@@ -163,12 +135,6 @@ SCENARIO("Board: Full board", "[full-board]") {
                                                   X, O, X};
         Board full_board(current_board);
 
-        WHEN("#getGrid is called") {
-            THEN("return the board that it was set too") {
-                REQUIRE(full_board.getGrid() == current_board);
-            }
-        }
-
         WHEN("#countMarker is called") {
             THEN("return 5 for X") {
                 REQUIRE(full_board.countMarker(X) == 5);
@@ -180,7 +146,6 @@ SCENARIO("Board: Full board", "[full-board]") {
                 REQUIRE(full_board.countMarker(O) == 4);
             }
         }
-
 
         WHEN("#isGridFull is called") {
             THEN("return true") {

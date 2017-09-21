@@ -65,10 +65,10 @@ SCENARIO("ComputerPlayer: Plays as O", "[comp-o]") {
     }
 
     GIVEN("O is about to win") {
-        std::vector<std::string> o_win_grid = { X , " ",  X ,
-                                                O ,  O , " ",
-                                                " ",  X , " "};
-        Board board(o_win_grid);
+        std::vector<std::string> o_to_win_grid = { X , " ",  X ,
+                                                   O ,  O , " ",
+                                                  " ",  X , " "};
+        Board board(o_to_win_grid);
         WHEN("#getMove is called") {
             THEN("O makes a winning move") {
                 REQUIRE(computerplayer.getMove(board) == 6);
@@ -77,10 +77,10 @@ SCENARIO("ComputerPlayer: Plays as O", "[comp-o]") {
     }
 
     GIVEN("X is about to win") {
-        std::vector<std::string> x_win_grid = { X , " ", " ",
-                                                X ,  O ,  X ,
-                                               " ", " ",  O};
-        Board board(x_win_grid);
+        std::vector<std::string> x_to_win_grid = { X , " ", " ",
+                                                   X ,  O ,  X ,
+                                                  " ", " ",  O};
+        Board board(x_to_win_grid);
         WHEN("#getMove is called") {
             THEN("O makes a blocking move") {
                 REQUIRE(computerplayer.getMove(board) == 7);
@@ -99,7 +99,7 @@ SCENARIO("ComputerPlayer: Plays as X", "[comp-x]") {
                                                 " ", " ",  X};
         Board board(x_win_grid);
         WHEN("#minimax is called") {
-            THEN("return -10") {
+            THEN("return 10") {
                 REQUIRE(xcomputerplayer.minimax(board, 0, true) == 10);
             }
         }
@@ -166,9 +166,9 @@ SCENARIO("ComputerPlayer: Plays as X", "[comp-x]") {
     }
 
     GIVEN("O is about to win") {
-        std::vector<std::string> x_win_grid = { X ,  X ,  O ,
-                                                X , " ", " ",
-                                                " ", O ,  O};
+        std::vector<std::string> x_win_grid = {  X ,  X , O,
+                                                " ", " ", X,
+                                                " ",  O , O};
         Board board(x_win_grid);
         WHEN("#getMove is called") {
             THEN("X makes a blocking move") {

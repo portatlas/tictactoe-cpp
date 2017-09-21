@@ -15,7 +15,7 @@ bool Rules::isValidMove(Board board, int move) {
     return isMoveInValidSlots(move, valid_slots);
 }
 
-std::string Rules::getOpponent(std::string &marker){
+std::string Rules::getOpponent(std::string &marker) {
    return (marker == X) ? O : X;
 };
 

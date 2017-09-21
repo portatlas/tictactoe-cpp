@@ -30,7 +30,7 @@ int ComputerPlayer::minimax(Board board, int depth, bool is_max_player) {
     if (is_max_player) {
         int best_score = -1000;
         for (int i = 1; i <= board.getSize(); i++) {
-            if (board.getSlot(i) == EMPTY) {
+            if (board.isSlotEmpty(i)) {
                 board.fillSlot(i, _marker);
                 best_score = std::max(best_score, minimax(board, depth + 1, !is_max_player));
                 board.fillSlot(i, EMPTY);
@@ -40,7 +40,7 @@ int ComputerPlayer::minimax(Board board, int depth, bool is_max_player) {
     } else {
         int best_score = 1000;
         for (int i = 1; i <= board.getSize(); i++) {
-            if (board.getSlot(i) == EMPTY) {
+            if (board.isSlotEmpty(i)) {
                 board.fillSlot(i, opponent);
                 best_score = std::min(best_score, minimax(board, depth + 1, !is_max_player));
                 board.fillSlot(i, EMPTY);
